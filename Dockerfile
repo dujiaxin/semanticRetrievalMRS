@@ -17,7 +17,7 @@ RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-la
      /opt/conda/bin/conda clean -ya
 ENV PATH /opt/conda/bin:$PATH
 
-RUN pip install tensorboardX tqdm allennlp pytorch-pretrained-bert sqlitedict lxml
+RUN pip install tensorboardX tqdm allennlp pytorch-pretrained-bert==0.4.0 sqlitedict lxml
 RUN python -m spacy download en
 #ADD . .
 

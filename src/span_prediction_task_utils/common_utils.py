@@ -114,10 +114,12 @@ def pair_w_tokens_with_ground_truth_span(w_tokens, w_char_to_word_offset, ground
         cleaned_answer_text = " ".join(
             whitespace_tokenize(orig_answer_text))
 
-        if actual_text.find(cleaned_answer_text) == -1 and is_training:
+        a = actual_text.replace(' ','').lower()
+        b = cleaned_answer_text.replace(' ','').lower()
+        if a.find(b) == -1 and b.find(a) == -1 and is_training:
             logger.warning("Can not find answer span from whitespace-tokenized context, there might be a problem")
             logger.warning("Could not find answer: '%s' vs. '%s'",
-                           actual_text, cleaned_answer_text)
+                           a, b)
             # If we could not find answer, we return None
             if do_checking:
                 return None, None, None
